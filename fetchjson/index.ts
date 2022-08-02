@@ -13,9 +13,13 @@ axios.get(url).then((response) => {
 
   const { id, title, completed } = todo;
 
-  console.log(`
-      The Todo with ID: ${id}
-      has a title of: ${title}
-      Is it finished? ${completed}
-    `);
+  logTodo(id, completed, title);
 });
+
+const logTodo = (id, title, completed) => {
+  console.log(`
+    The Todo with ID: ${id}
+    has a title of: ${title}
+    Is it finished? ${completed}
+  `);
+};
