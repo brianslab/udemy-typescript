@@ -32,7 +32,7 @@ const App = () => {
       plugins: [unpkgPathPlugin()],
       define: {
         'process.env.NODE_ENV': '"production"',
-        global: 'windoq',
+        global: 'window',
       },
     });
 
