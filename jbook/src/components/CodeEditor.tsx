@@ -6,6 +6,7 @@ import codeShift from 'jscodeshift';
 import Highlighter from 'monaco-jsx-highlighter';
 
 import './CodeEditor.css';
+import './syntax.css';
 
 interface CodeEditorProps {
   initialValue: string;
