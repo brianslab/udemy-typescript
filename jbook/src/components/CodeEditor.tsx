@@ -24,13 +24,15 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onChange }) => {
 
   const onFormat = () => {
     const ugly = editorRef.current.getModel().getValue();
-    const pretty = prettier.format(ugly, {
-      parser: 'babel',
-      plugins: [parser],
-      useTabs: false,
-      semi: true,
-      singleQuote: true,
-    });
+    const pretty = prettier
+      .format(ugly, {
+        parser: 'babel',
+        plugins: [parser],
+        useTabs: false,
+        semi: true,
+        singleQuote: true,
+      })
+      .replace(/\n$/, '');
     editorRef.current.setValue(pretty);
   };
 
