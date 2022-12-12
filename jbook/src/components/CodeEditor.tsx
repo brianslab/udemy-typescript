@@ -3,6 +3,8 @@ import MonacoEditor, { EditorDidMount } from '@monaco-editor/react';
 import prettier from 'prettier';
 import parser from 'prettier/parser-babel';
 
+import './CodeEditor.css';
+
 interface CodeEditorProps {
   initialValue: string;
   onChange(value: string): void;
@@ -33,7 +35,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ initialValue, onChange }) => {
   };
 
   return (
-    <div>
+    <div className='editor-wrapper'>
       <button
         onClick={onFormat}
         className='button button-format is-primary is-small'
