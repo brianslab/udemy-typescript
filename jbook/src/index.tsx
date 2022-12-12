@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import * as esbuild from 'esbuild-wasm';
 import { unpkgPathPlugin } from './plugins/unpkg-path-plugin';
 import { fetchPlugin } from './plugins/fetch-plugin';
+import { ifError } from 'assert';
 
 const App = () => {
   const [input, setInput] = useState('');
@@ -26,6 +27,8 @@ const App = () => {
     if (!ref.current) {
       return;
     }
+
+    iframe.current.srcdoc = html;
 
     const result = await ref.current.build({
       entryPoints: ['index.js'],
