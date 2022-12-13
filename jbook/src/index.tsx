@@ -4,13 +4,14 @@ import { store } from './state';
 import 'bulmaswatch/superhero/bulmaswatch.min.css';
 
 // import CodeCell from './components/CodeCell';
-import TextEditor from './components/TextEditor';
+// import TextEditor from './components/TextEditor';
+import CellList from './components/CellList';
 
 const App = () => {
   return (
     <Provider store={store}>
       <div>
-        <TextEditor />
+        <CellList />
       </div>
     </Provider>
   );
