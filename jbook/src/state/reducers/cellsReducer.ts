@@ -22,20 +22,39 @@ const initialState: CellsState = {
 
 const reducer = produce((state: CellsState = initialState, action: Action) => {
   switch (action.type) {
-    case ActionType.UPDATE_CELL:
+    case ActionType.UPDATE_CELL: {
       const { id, content } = action.payload;
 
       state.data[id].content = content;
 
       return;
-    case ActionType.DELETE_CELL:
+    }
+    case ActionType.DELETE_CELL: {
       delete state.data[action.payload];
       state.order = state.order.filter((id) => id !== action.payload);
 
       return;
-    case ActionType.INSERT_CELL_BEFORE:
-      return state;
-    case ActionType.MOVE_CELL:
+    }
+    case ActionType.INSERT_CELL_BEFORE: {
+      const cell: Cell = {
+        content: '',
+        type: action.payload.type,
+        id: randomID(),
+      };
+
+      state.data[cell.id] = cell;
+
+      const index = state.order.findIndex((id) => id === action.payload.id);
+
+      if (index < 0) {
+        state.order.push(cell.id);
+      } else {
+        state.order.splice(index, 0, cell.id);
+      }
+
+      return;
+    }
+    case ActionType.MOVE_CELL: {
       const { direction } = action.payload;
       const index = state.order.findIndex((id) => id === action.payload.id);
       const targetIndex = direction === 'up' ? index - 1 : index + 1;
@@ -48,9 +67,14 @@ const reducer = produce((state: CellsState = initialState, action: Action) => {
       state.order[targetIndex] = action.payload.id;
 
       return;
+    }
     default:
       return state;
   }
 });
+
+const randomID = () => {
+  return Math.random().toString(36).substring(2, 5);
+};
 
 export default reducer;
