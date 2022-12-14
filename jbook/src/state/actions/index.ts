@@ -35,14 +35,14 @@ export interface UpdateCellAction {
 export interface BundleStartAction {
   type: ActionType.BUNDLE_START;
   payload: {
-    id: string;
+    cellID: string;
   };
 }
 
 export interface BundleCompleteAction {
   type: ActionType.BUNDLE_COMPLETE;
   payload: {
-    id: string;
+    cellID: string;
     bundle: {
       code: string;
       err: string;
