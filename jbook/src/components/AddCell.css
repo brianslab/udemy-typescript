@@ -6,8 +6,10 @@
   position: absolute;
   top: 50%;
   bottom: 50%;
+  left: 2.5%;
+  right: 2.5%;
   border-bottom: 1px solid gray;
-  width: 100%;
+  width: 90%;
   z-index: -1;
 }
 
