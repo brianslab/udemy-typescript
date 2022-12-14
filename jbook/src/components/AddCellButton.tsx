@@ -3,16 +3,16 @@ import { CellTypes } from '../state';
 
 interface AddCellButtonProps {
   type: CellTypes;
-  nextCellID: string | null;
+  prevCellID: string | null;
 }
 
-const AddCellButton: React.FC<AddCellButtonProps> = ({ type, nextCellID }) => {
-  const { insertCellBefore } = useActions();
+const AddCellButton: React.FC<AddCellButtonProps> = ({ type, prevCellID }) => {
+  const { insertCellAfter } = useActions();
 
   return (
     <button
       className='button is-rounded is-primary is-small'
-      onClick={() => insertCellBefore(nextCellID, type)}
+      onClick={() => insertCellAfter(prevCellID, type)}
     >
       <span className='icon is-small'>
         <i className='fas fa-plus' />
