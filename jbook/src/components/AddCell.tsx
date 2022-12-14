@@ -10,10 +10,14 @@ const AddCell: React.FC<AddCellProps> = ({ nextCellID }) => {
 
   return (
     <div className='add-cell'>
-      <button onClick={() => insertCellBefore(nextCellID, 'javascript')}>
-        Code
-      </button>
-      <button onClick={() => insertCellBefore(nextCellID, 'text')}>Text</button>
+      <div className='add-buttons'>
+        <button onClick={() => insertCellBefore(nextCellID, 'javascript')}>
+          Code
+        </button>
+        <button onClick={() => insertCellBefore(nextCellID, 'text')}>
+          Text
+        </button>
+      </div>
       <div className='divider' />
     </div>
   );
