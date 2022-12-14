@@ -2,7 +2,7 @@ import { useActions } from '../hooks/useActions';
 import './AddCell.css';
 
 interface AddCellProps {
-  nextCellID: string;
+  nextCellID: string | null;
 }
 
 const AddCell: React.FC<AddCellProps> = ({ nextCellID }) => {
