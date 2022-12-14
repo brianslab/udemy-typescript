@@ -1,3 +1,5 @@
+import { Dispatch } from 'redux';
+
 import { ActionType } from '../action_types';
 import {
   Direction,
@@ -5,8 +7,12 @@ import {
   DeleteCellAction,
   MoveCellAction,
   InsertCellAfterAction,
+  BundleStartAction,
+  BundleCompleteAction,
+  Action,
 } from '../actions';
 import { CellTypes } from '../cell';
+import bundler from '../../bundler';
 
 export const updateCell = (id: string, content: string): UpdateCellAction => {
   return {
@@ -45,5 +51,26 @@ export const insertCellAfter = (
       id,
       type: cellType,
     },
+  };
+};
+
+export const createBundle = (cellID: string, input: string) => {
+  return async (dispatch: Dispatch<Action>) => {
+    dispatch({
+      type: ActionType.BUNDLE_START,
+      payload: {
+        cellID,
+      },
+    });
+
+    const result = await bundler(input);
+
+    dispatch({
+      type: ActionType.BUNDLE_COMPLETE,
+      payload: {
+        cellID,
+        bundle: result,
+      },
+    });
   };
 };
