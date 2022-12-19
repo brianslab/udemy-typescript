@@ -20,12 +20,11 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
     const { data, order } = state.cells;
     const orderedCells = order.map((id) => data[id]);
 
-    const cumulativeCode = [
-      `
+    const renderFunc = `
         import _React from 'react';
         import _ReactDOM from 'react-dom';
 
-        const render = (value) => {
+        var render = (value) => {
           const root = document.querySelector('#root');
 
           if (typeof value === 'object') {
@@ -38,10 +37,16 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
             root.innerHTML = value;
           }
         };
-      `,
-    ];
+      `;
+    const renderFuncNoop = 'var render = () => {}';
+    const cumulativeCode = [];
     for (let c of orderedCells) {
       if (c.type === 'javascript') {
+        if (c.id === cell.id) {
+          cumulativeCode.push(renderFunc);
+        } else {
+          cumulativeCode.push(renderFuncNoop);
+        }
         cumulativeCode.push(c.content);
       }
       if (c.id === cell.id) {
