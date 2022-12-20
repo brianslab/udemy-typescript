@@ -9,6 +9,7 @@
   "publishConfig": {
     "access": "public"
   },
+  "bin" : "dist/index.js",
   "scripts": {
     "build": "tsc"
   },
